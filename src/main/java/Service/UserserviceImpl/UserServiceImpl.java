@@ -12,7 +12,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean checkUserExist(User user) {
-        if (userDao.getUserByName(user.getName()) == null) return false;
-        return true;
+        return userDao.getUserByName(user.getName()) != null;
     }
 }
