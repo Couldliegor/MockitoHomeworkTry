@@ -4,6 +4,8 @@ import Model.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDaoTest {
@@ -13,10 +15,10 @@ public class UserDaoTest {
     public static void chillAndRelax() {
         System.out.println("1) Test has been passed successfully, now relax listening to LO-Fi music!)");
     }
-
     @Test
-    public void shouldReturnUserByName() {
-        assertEquals(userDao.getUserByName("Egor").getClass(), User.class);
+    public void shouldReturnUserByNameAndIfEquals() {
+        User expected = new User("Egor", 18);
+        assertEquals(expected, userDao.getUserByName(expected.getName()));
     }
 
     @Test
@@ -26,6 +28,11 @@ public class UserDaoTest {
 
     @Test
     public void classesOfReturnValueAndExpectedShouldBeTheSame() {
-        assertEquals(User.class, userDao.getUserByName("Egor").getClass());
+        List<User> expected = List.of(
+                new User("Egor", 18),
+                new User("Grisha", 19),
+                new User("Alexa", 21),
+                new User("Marina", 23));
+        assertEquals(expected, userDao.findAllUser());
     }
 }
